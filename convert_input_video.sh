@@ -9,7 +9,7 @@ rm -rf temp
 mkdir temp
 
 # Split video into segments and save in temp directory
-ffmpeg -i $input_video -c copy -map 0 -segment_time 00:00:15 -f segment -reset_timestamps 1 temp/input_video%d.mp4
+ffmpeg -i $input_video -c copy -an -map 0 -segment_time 00:00:15 -f segment -reset_timestamps 1 temp/input_video%d.mp4
 
 # Split audio from video and convert to wav, save in temp directory
 ffmpeg -i $input_video -c copy -map 0:a -f segment -segment_time 00:00:15 -reset_timestamps 1 -acodec pcm_s16le -ar 44100 -ac 2 temp/input_audio%d.wav
