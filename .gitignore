@@ -14,3 +14,11 @@ evaluation/test_filelists/lr*.txt
 *.gif
 *.webm
 *.mp3
+
+*.env
+
+checkpoints/wav2lip_gan.pth
+checkpoints/wav2lip.pth
+face_detection/detection/sfd/s3fd.pth
+
+tasks/*

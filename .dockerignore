@@ -1,0 +1,44 @@
+# Python Cache Files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Version Control System
+.git/
+.gitignore
+
+# Development Environment Files
+.vscode/
+
+# Log Files
+*.log
+
+# Operating System Generated Files
+.DS_Store
+Thumbs.db
+
+# Docker Files
+docker-compose.yaml
+Dockerfile
+
+# Environment Files
+*.env
+
+# Temporary Files
+*.temp
+*.swp
+
+# Documentation and License
+LICENSE
+README.md
+
+# Configuration Files
+.gitignore
+
+# Model paths
+checkpoints/wav2lip_gan.pth
+checkpoints/wav2lip.pth
+face_detection/detection/sfd/s3fd.pth
+
+tasks/*

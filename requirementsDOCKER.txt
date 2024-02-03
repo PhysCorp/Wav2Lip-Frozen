@@ -2,9 +2,6 @@ librosa==0.9.1
 numpy
 opencv-contrib-python
 opencv-python
--f https://download.pytorch.org/whl/torch_stable.html
-torch
-torchvision
 tqdm
 numba
 rich
@@ -13,3 +10,4 @@ ffmpeg-python
 imageio==2.4.1
 Flask
 waitress
+# torch and torchvision are covered in Dockerfile

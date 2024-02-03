@@ -1,4 +1,4 @@
-librosa
+librosa==0.9.1
 numpy
 opencv-contrib-python
 opencv-python
@@ -6,3 +6,9 @@ torch
 torchvision
 tqdm
 numba
+rich
+youtube-dl
+ffmpeg-python
+imageio==2.4.1
+Flask
+waitress

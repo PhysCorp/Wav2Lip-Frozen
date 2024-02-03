@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  webserver:
+    # image: mwcurtis20/wav2lip-frozen:latest
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PORT=${PORT}
+      - GAN_SITE=${GAN_SITE}
+      - WAV2LIP_SITE=${WAV2LIP_SITE}
+      - FACEDETECT_SITE=${FACEDETECT_SITE}
+    volumes:
+      - model_storage:/app/checkpoints
+      - face_detect_storage:/app/face_detection
+    ports:
+      - "99:${PORT}" # Map port 99 on host to ${PORT} in container (HTTP)
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:${PORT}/healthcheck"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - wav_int_network
+networks:
+  wav_int_network:
+    external: false
+    name: "wav_int_network"
+volumes:
+  model_storage:
+    driver: local
+  face_detect_storage:
+    driver: local

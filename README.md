@@ -1,22 +1,56 @@
-# **Wav2Lip**: *Accurately Lip-syncing Videos In The Wild*
+<h1 align="center">
+  <img src="./favicon.png" alt="Wav2Lip-Frozen" width="128" height="128">
+</h1>
 
-Forked from zabique/Wav2Lip
+<p align="center">
+  <strong>Accurately Lip-syncing Videos In The Wild</strong>
+  <italic>Now in Docker form!</italic>
+</p>
 
+<div align="center">
+  
+  <a href="https://github.com/PhysCorp/Wav2Lip-Frozen">![link to GitHub showing Stars number](https://img.shields.io/github/stars/PhysCorp/Wav2Lip-Frozen?style=social)</a>
+  <a href="https://github.com/PhysCorp/Wav2Lip-Frozen">![link to GitHub showing Forks number](https://img.shields.io/github/forks/PhysCorp/Wav2Lip-Frozen?style=social)</a>
+</div>
+
+**More documentation coming soon!**
 ----------
+Most of this code is part of the paper: _A Lip Sync Expert Is All You Need for Speech to Lip Generation In the Wild_ published at ACM Multimedia 2020. 
 
-This code is part of the paper: _A Lip Sync Expert Is All You Need for Speech to Lip Generation In the Wild_ published at ACM Multimedia 2020. 
-
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/a-lip-sync-expert-is-all-you-need-for-speech/lip-sync-on-lrs2)](https://paperswithcode.com/sota/lip-sync-on-lrs2?p=a-lip-sync-expert-is-all-you-need-for-speech)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/a-lip-sync-expert-is-all-you-need-for-speech/lip-sync-on-lrs3)](https://paperswithcode.com/sota/lip-sync-on-lrs3?p=a-lip-sync-expert-is-all-you-need-for-speech)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/a-lip-sync-expert-is-all-you-need-for-speech/lip-sync-on-lrw)](https://paperswithcode.com/sota/lip-sync-on-lrw?p=a-lip-sync-expert-is-all-you-need-for-speech)
-
-|📑 Original Paper|📰 Project Page|🌀 Demo|⚡ Live Testing|📔 Colab Notebook
-|:-:|:-:|:-:|:-:|:-:|
-[Paper](http://arxiv.org/abs/2008.10010) | [Project Page](http://cvit.iiit.ac.in/research/projects/cvit-projects/a-lip-sync-expert-is-all-you-need-for-speech-to-lip-generation-in-the-wild/) | [Demo Video](https://youtu.be/0fXaDCZNOJc) | [Interactive Demo](https://bhaasha.iiit.ac.in/lipsync) | [Colab Notebook](https://colab.research.google.com/drive/1tZpDWXz49W6wDcTprANRGLo2D_EbD5J8?usp=sharing) /[Updated Collab Notebook](https://colab.research.google.com/drive/1IjFW1cLevs6Ouyu4Yht4mnR4yeuMqO7Y#scrollTo=MH1m608OymLH)
-
- <img src="https://drive.google.com/uc?export=view&id=1Wn0hPmpo4GRbCIJR8Tf20Akzdi1qjjG9"/>
-
+**Usage**
 ----------
+Please use the following section to build and deploy the Docker image. It can be ran either with the included webserver, available at port 99 (for HTTP), or by entering an interactive shell to run the inference script.
+Available Flask endpoints:
+- GET /healthcheck: This endpoint is used to check the health of the server. It returns a JSON response with the status of the server, whether a task is currently being processed, and the number of active threads.
+- GET /queue: This endpoint returns a JSON response containing the current queue of tasks. Each task in the queue is represented as a dictionary with the filenames of the input video and audio, and the task ID.
+- POST /upload: This endpoint is used to upload a video and audio file for processing. The files should be sent as multipart/form-data with the keys 'input_video' and 'input_audio'. The endpoint returns a JSON response indicating whether the upload was successful and the ID of the task.
+- GET /status: This endpoint is used to get the status of a task. The task ID should be provided as a query parameter 'task_id'. The endpoint returns the current status of the task as a string.
+- GET /download: This endpoint is used to download the result of a task. The task ID should be provided as a query parameter 'task_id'. The endpoint returns the result file as a download if it exists.
+- GET /cleanup: This endpoint is used to remove all tasks and their associated files. The endpoint returns a JSON response indicating whether the cleanup was successful and a message.
+
+**Build Docker Image from Repo**
+----------
+>Note: Remember to have Docker and Docker Compose installed on your system before running the following commands.
+
+```bash
+# Clone the repository
+git clone https://github.com/PhysCorp/Wav2Lip-Frozen.git
+cd Wav2Lip-Frozen
+# Clean existing builder and image cache
+sudo docker builder prune
+sudo docker image prune -a
+# Build the image
+sudo docker-compose build --no-cache
+# Deploy the container
+sudo docker-compose up -d
+# Update the container
+sudo docker-compose down
+sudo docker-compose build --no-cache
+sudo docker-compose up -d
+```
+
+## Please see below for original README:
+
 **Highlights**
 ----------
  - Weights of the visual quality disc has been updated in readme!
